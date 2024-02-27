@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           title: Text('Login Form'),
-          backgroundColor: Colors.redAccent,
+          backgroundColor: Colors.green[300],
         ),
         body: LoginForm(),
       ),
@@ -50,13 +50,17 @@ class _LoginFormState extends State<LoginForm> {
               controller: _emailController,
               keyboardType: TextInputType.emailAddress,
               decoration: InputDecoration(
+              
+      
                 labelText: 'Email',
                 hintText: ("email@gmailcom"),
                 prefixIcon:Icon(Icons.email) ,
-                filled: false,
-                fillColor: Colors.blue
-              
-                ,
+                filled: true,
+                fillColor: Colors.yellow[300],
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                
                 
               ),
               
@@ -80,6 +84,11 @@ class _LoginFormState extends State<LoginForm> {
               obscureText: _obscurePassword,
               decoration: InputDecoration(
                 labelText: 'Password',
+                filled: true,
+                fillColor: Colors.yellow[300],
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
                 suffixIcon: InkWell(
                   onTap: () {
                     setState(() {
@@ -113,6 +122,10 @@ class _LoginFormState extends State<LoginForm> {
             ),
             SizedBox(height: 16.0),
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.green[300]
+              ),
+              
               onPressed: () {
                 bool ok=_formKey.currentState!.validate(); 
                 if (ok){
@@ -120,7 +133,8 @@ class _LoginFormState extends State<LoginForm> {
                   print('Email: ${_emailController.text}');
                   print('Password: ${_passwordController.text}');
                   print('Remember Me: $_rememberMe');
-
+                }
+                //reinitialise form nan
                   _formKey.currentState!.reset();
                   _emailController.clear();
                   _passwordController.clear();
@@ -128,8 +142,8 @@ class _LoginFormState extends State<LoginForm> {
                     _rememberMe = false;
                     _obscurePassword = true;
                   });
-                
-              }
+               
+              
               },
               child: Text('Login'),
             ),
